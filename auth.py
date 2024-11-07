@@ -9,7 +9,14 @@ class UserData:
     remember: bool
 
 
-def login_user(user_data: UserData):
+userData: UserData = {
+    "username": "adars@gmail.com",
+    "password": "adars@123",
+    "remember": True,
+}
+
+
+def login_user(user_data: UserData = userData):
     res = requests.post(url=url, json=user_data)
 
     if res.status_code == 200:
@@ -20,12 +27,6 @@ def login_user(user_data: UserData):
         return None
 
 
-userData: UserData = {
-    "username": "adars@gmail.com",
-    "password": "adars@123",
-    "remember": True,
-}
-
 if __name__ == "__main__":
-    data = login_user(userData)
+    data = login_user()
     print(data)

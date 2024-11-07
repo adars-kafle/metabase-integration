@@ -1,6 +1,16 @@
+import os
 import requests
+from dotenv import load_dotenv
 from auth import login_user
 from user import get_current_user
+
+load_dotenv()
+
+DB_HOST = os.environ.get("DB_HOST")
+DB_PORT = os.environ.get("DB_PORT")
+DB_NAME = os.environ.get("DB_NAME")
+DB_USER = os.environ.get("DB_USER")
+DB_PASS = os.environ.get("DB_PASS")
 
 url = "http://localhost:3000/api/database"
 
@@ -13,12 +23,12 @@ json_data = {
     "auto_run_queries": True,
     "schedules": {},
     "details": {
-        "host": "host.docker.internal",
-        "port": 5432,
-        "dbname": "staging_sept_23",
-        "user": "postgres",
+        "host": DB_HOST,
+        "port": DB_PORT,
+        "dbname": DB_NAME,
+        "user": DB_USER,
         "use-auth-provider": False,
-        "password": "demo#1234k",
+        "password": DB_PASS,
         "schema-filters-type": "all",
         "ssl": False,
         "tunnel-enabled": False,

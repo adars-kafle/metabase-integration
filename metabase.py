@@ -1,5 +1,5 @@
 import requests
-from auth import login_user, UserData
+from auth import login_user
 from user import get_current_user
 
 url = "http://localhost:3000/api/database"
@@ -28,13 +28,7 @@ json_data = {
     "engine": "postgres",
 }
 
-userData: UserData = {
-    "username": "adars@gmail.com",
-    "password": "adars@123",
-    "remember": True,
-}
-
-login = login_user(userData)
+login = login_user()
 current = get_current_user(login["id"])
 
 cookies = {"metabase.SESSION": login["id"], "metabase.TIMEOUT": "alive"}

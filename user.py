@@ -1,4 +1,5 @@
 import requests
+from auth import login_user
 
 url = "http://localhost:3000/api/user/current"
 
@@ -18,4 +19,6 @@ def get_current_user(id: str | None = None):
 
 
 if __name__ == "__main__":
-    get_current_user()
+    login = login_user()
+    current_user = get_current_user(login["id"])
+    print(current_user)
